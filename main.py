@@ -18,5 +18,12 @@ else:
                 #post로 가져온 클래스 리스트에 view-all이 없는 경우 True가 되는 조건문
                 #post.get('class', [])는 post 엘리먼트의 'class'속성 값을 가져옴. 
                 # 그리고 만약 속성 값이 존재하지 않으면 빈 []를 반환
-                print("//////////")
-                print(post)
+                anchors = post.find_all('a')
+                anchor = anchors[1] #anchors List에서 두번째 "a"를 찾아주는 방법 
+                link = anchor['href'] # link 변수에 anchor의 href를 전달하는 방식 list나 dictionary에서 주로 쓰이는 방식
+                company, time, region = anchor.find_all("span", class_="company")
+                #[] list의 각 값에 변수를 할당하는 방법
+                title = anchor.find("span", class_="title")
+                # find_all은 list를 반환하지만, find는 결과를 가져온다. BeautifulSoup의 기능!
+                print(title, company, time, region)
+                print("///////////\n////////////")
