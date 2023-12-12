@@ -11,6 +11,7 @@ if response.status_code != 200:
 else:
     soup = BeautifulSoup(response.text, "html.parser")
     jobs = soup.find_all("section", class_="jobs") #jobs는 List이다.
+    result = []
     for job_section in jobs:
         job_posts = job_section.find_all("li")
         for post in job_posts:
@@ -25,5 +26,11 @@ else:
                 #[] list의 각 값에 변수를 할당하는 방법
                 title = anchor.find("span", class_="title")
                 # find_all은 list를 반환하지만, find는 결과를 가져온다. BeautifulSoup의 기능!
-                print(title.string, company.string, time.string, region.string) #BeautifulSoup의 Amazing한 기능 .string
-                print("///////////\n////////////")
+                job_data = {
+                    'title': title.string,
+                    'company': company.string,
+                    'time': time.string,
+                    'region': region.string
+                }
+                result.append(job_data) #list에 dictionary 값을 넣는 방법 list.append(dictionary)
+    print(result) # for loop 밖에 result를 정의함으로써 data를 저장
