@@ -25,5 +25,5 @@ else:
                 #[] list의 각 값에 변수를 할당하는 방법
                 title = anchor.find("span", class_="title")
                 # find_all은 list를 반환하지만, find는 결과를 가져온다. BeautifulSoup의 기능!
-                print(title, company, time, region)
+                print(title.string, company.string, time.string, region.string) #BeautifulSoup의 Amazing한 기능 .string
                 print("///////////\n////////////")
