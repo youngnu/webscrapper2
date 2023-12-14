@@ -13,7 +13,7 @@ def get_page_count(keyword):
         pages = pagination.find_all("li", recursive=False) #recursive의 기능 : ul바로 아래 있는 li만을 검색 . li의 li까지 검색하고 싶지 않을 때
         count = len(pages)
         if count >= 5:
-            return 8
+            return 5
         else:
             return count
                  
