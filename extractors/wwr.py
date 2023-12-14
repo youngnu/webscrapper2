@@ -25,10 +25,9 @@ def extract_wwr(keyword):
                     title = anchor.find("span", class_="title")
                     # find_all은 list를 반환하지만, find는 결과를 가져온다. BeautifulSoup의 기능!
                     job_data = {
-                        'title': title.string,
-                        'company': company.string,
-                        'time': time.string,
-                        'region': region.string,
+                        'title': title.string.replace(",", " "),
+                        'company': company.string.replace(",", " "),
+                        'region': region.string.replace(",", " "),
                         'link': f"https://weworkremotely.com{link}"
                     }
                     result.append(job_data) #list에 dictionary 값을 넣는 방법 list.append(dictionary)

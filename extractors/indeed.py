@@ -38,9 +38,9 @@ def extract_indeed(keyword):
                     company = li.find("span", {"data-testid": "company-name"})
                     region = li.find("div", {"data-testid": "text-location"})
                     job_data = {
-                        'title': title.string, #.string은 긁어온 HTML에서 글자만 뽑아준다.
-                        'company': company.string,
-                        'region': region.string,
+                        'title': title.string.replace(",", " "), #.string은 긁어온 HTML에서 글자만 뽑아준다.
+                        'company': company.string.replace(",", " "),
+                        'region': region.string.replace(",", " "),
                         'link': f"http://kr.indeed.com{link}"
                     }
                     result.append(job_data)
