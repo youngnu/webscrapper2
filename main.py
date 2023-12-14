@@ -1,11 +1,13 @@
 from extractors.indeed import extract_indeed
 from extractors.wwr import extract_wwr
+from extractors.wanted import extract_wanted
 
 keyword = input("What are you searching for jobs?")
 
 indeed = extract_indeed(keyword)
 wwr = extract_wwr(keyword)
-jobs = indeed + wwr #리스트끼리 합칠 수 있다
+wanted = extract_wanted(keyword)
+jobs = indeed + wwr + wanted #리스트끼리 합칠 수 있다
 file = open(f"{keyword}.csv", "w")
 file.write("Title, Company, Location, Url\n") #file.write()는 하나의 argument만을 받는다.
 
