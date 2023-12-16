@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <title>Search</title>
 </head>
 <body>
-    <h1>Searching for {{keyword}} :</h1>
-    {% for job in jobs %}
-        <div>
-            <span>{{job.title}}</span>
-        </div>
-    {% endfor %}
+    <main class="container">
+        <h1>Searching for {{keyword}} :</h1>
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>    
+                    <th>Location</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{job.title}}</td>
+                    <td>{{job.company}}</td>
+                    <td>{{job.region}}</td>
+                    <td><a href="{{job.link}}">Apply &rarr;</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>
