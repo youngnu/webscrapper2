@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from extractors.indeed import extract_indeed
 from extractors.wwr import extract_wwr
 from extractors.wanted import extract_wanted
-
+from file import save_to_file
 
 app = Flask('JobScrapper')
 
@@ -26,5 +26,15 @@ def search():
         jobs  = indeed + wwr + wanted
         db[keyword] = jobs
     return render_template("seacrh.html", keyword=keyword, jobs = jobs)
+
+@app.route("/export")
+def export():
+    keyword = request.args.get("keyword")
+    if keyword == None:
+        return redirect("/")
+    if keyword not in db:
+        return redirect(f"/search?keyword={keyword}")
+    save_to_file(keyword, db[keyword])
+    return send_file(f"{keyword}.csv", as_attachment=True)
 
 app.run(debug=True)
