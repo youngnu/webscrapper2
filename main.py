@@ -1,13 +1,11 @@
-from extractors.indeed import extract_indeed
-from extractors.wwr import extract_wwr
-from extractors.wanted import extract_wanted
-from file import save_to_file
+from flask import Flask
 
-keyword = input("What are you searching for jobs?")
+app = Flask('JobScrapper')
 
-indeed = extract_indeed(keyword)
-wwr = extract_wwr(keyword)
-wanted = extract_wanted(keyword)
-jobs = indeed + wwr + wanted #리스트끼리 합칠 수 있다
-
-save_to_file(keyword, jobs)
+#파이썬 스크립트가 직접 실행될때 코드 불록을 실행하기 위한 조건문입니다.
+#즉, 스크립트가 다른 스크립트에서 모듈로 임포트되지 않고 직접 실행될때만 해당 블록이 실행됩니다.
+#app.run(debug=True)는 Flask애플리케이션을 내장 웹 서버를 사용하여 실행하라는 명령입니다.
+#debug=True 옵션은 개발 중에 디버깅을 쉽게 하기 위해 Flask 애플리케이션을 디버그 모드로 실행하도록 하는 것임
+#즉, 이부분은 개발 중에만 사용하도록 하는 부분이며, 실제로 배포할때는 내장 웹서버 대신에 웹 서버를 사용하는 것이 권장됩니다.
+if __name__ == "__main__":
+    app.run(debug=True)
