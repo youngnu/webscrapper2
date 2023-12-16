@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1>Searching for {{keyword}} :</h1>
+    {% for job in jobs %}
+        <div>
+            <span>{{job.title}}</span>
+        </div>
+    {% endfor %}
 </body>
 </html>
