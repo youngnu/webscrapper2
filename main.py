@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask('JobScrapper')
 
 @app.route("/")
 def hello():
-    return "<h1>Hello World</h1>"
+    return render_template("home.html", name="YoungBeom")
 
 app.run(debug=True)
